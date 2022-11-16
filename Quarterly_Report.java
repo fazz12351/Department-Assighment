@@ -3,7 +3,7 @@ import java.util.Scanner;
 import javax.security.sasl.SaslServer;
 
 public class Quarterly_Report {
-    String BestPeromingDepartment="";
+    String BestPeromingDepartment = "";
     public static String[] Departments = {
         "Electrical",
         "Kitchen",
@@ -80,27 +80,27 @@ public class Quarterly_Report {
 
     public static void main(String[] args) {
         //Select the quater information you would like;
-        QuatersIncome(1);
+        QuatersIncome(2);
 
 
     }
 
 
     public static void QuatersIncome(int quaters) {
-        int ElectricalSales = DepartmentCalculations(0,quaters);
-        System.out.println("Electric : "+ElectricalSales);
-        int KitchenSales = DepartmentCalculations(1,quaters);
-        System.out.println("Kitchen : "+KitchenSales);
-        int BathroomSales = DepartmentCalculations(2,quaters);
-        System.out.println("Bathroom : "+BathroomSales);
+        int ElectricalSales = DepartmentCalculations(0, quaters);
+        System.out.println("Electric : " + ElectricalSales);
+        int KitchenSales = DepartmentCalculations(1, quaters);
+        System.out.println("Kitchen : " + KitchenSales);
+        int BathroomSales = DepartmentCalculations(2, quaters);
+        System.out.println("Bathroom : " + BathroomSales);
 
-        int SoftFurnishingSales = DepartmentCalculations(3,quaters);
-        System.out.println("SoftFurnishing : "+SoftFurnishingSales);
+        int SoftFurnishingSales = DepartmentCalculations(3, quaters);
+        System.out.println("SoftFurnishing : " + SoftFurnishingSales);
 
         int AccessoriesSales = DepartmentCalculations(4, quaters);
-        System.out.println("Accessories : "+AccessoriesSales);
+        System.out.println("Accessories : " + AccessoriesSales);
 
-        peformance(ElectricalSales, KitchenSales, BathroomSales, SoftFurnishingSales, AccessoriesSales,quaters);
+        peformance(ElectricalSales, KitchenSales, BathroomSales, SoftFurnishingSales, AccessoriesSales, quaters);
     }
 
 
@@ -126,21 +126,49 @@ public class Quarterly_Report {
         return Earnings;
     }
 
-    public static String peformance(int dep1,int dep2,int dep3,int dep4,int dep5,int quaters){
-        int[] largerst={dep1,dep2,dep3,dep4,dep5};
-        int highestIncome=0;
-        String BestDepartment="";
+    public static String peformance(int dep1, int dep2, int dep3, int dep4, int dep5, int quaters) {
+        int[] largerst = {
+            dep1,
+            dep2,
+            dep3,
+            dep4,
+            dep5
+        };
+        int highestIncome = 0;
+        int highestIncomeIndex = 0;
+        String BestDepartment = "";
+        int EarningMonth1 = 0;
+        int EarningMonth2 = 0;
+        int EarningMonth3 = 0;
 
 
-        for(int i=0;i<largerst.length;i++){
-            if(largerst[i]>=highestIncome){
-                highestIncome=largerst[i];
-                BestDepartment=Departments[i];
-                
+        for (int i = 0; i < largerst.length; i++) {
+            if (largerst[i] >= highestIncome) {
+                highestIncome = largerst[i];
+                BestDepartment = Departments[i];
+                if (quaters == 1) {
+
+                    EarningMonth1 = SalesJan[i];
+                    EarningMonth2 = SalesFeb[i];
+                    EarningMonth3 = SalesMar[i];
+
+                } else if (quaters == 2) {
+
+                    EarningMonth1 = SalesApr[i];
+                    EarningMonth2 = SalesMay[i];
+                    EarningMonth3 = SalesJun[i];
+
+
+                }
             }
         }
-        System.out.println("The best peforming department is : "+BestDepartment+" With Sales of " +highestIncome+" in Quater "+quaters);
+        System.out.println("The best peforming department is : " + BestDepartment + " With Sales of " + highestIncome + " in Quater " + quaters);
+        System.out.println("Month 1 : "+EarningMonth1);
+        System.out.println("Month 2 : "+EarningMonth2);
+        System.out.println("Month 3 : "+EarningMonth3);
         return BestDepartment;
-        
+
+
+
     }
 }
